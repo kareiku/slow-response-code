@@ -1,7 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-typedef struct {
-} QR_
+#define LENGTH 100
+
+typedef unsigned char byte;
 
 int main() {
-    
+    byte **QR;
+
+    QR = (byte **)malloc(sizeof(byte) * LENGTH);
+}

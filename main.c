@@ -2,16 +2,20 @@
 #include <stdlib.h>
 
 #define LENGTH 100
-#define FILENAME "image.bpm"
 
 typedef unsigned char byte;
 
-int main() {
-    FILE* file = fopen(FILENAME, "wb");
+int main(int argc, char **argv) {
+    if (argc < 2) {
+        fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
+        return 1;
+    }
+
+    FILE* file = fopen(argv[1], "wb");
 
     if (!file) {
-        perror("Error when opening the bitmap file.");
-        return 1;
+        fprintf(stderr, "Error on file opening.\n");
+        return 2;
     }
 
     byte bitmapHeader[] = { 0x42, 0x4D, 0x46, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -23,4 +27,6 @@ int main() {
                             0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
     byte** QR = (byte**)malloc(sizeof(byte) * LENGTH);
+
+    fwrite(bitmapHeader, sizeof(bitmapHeader), 1, file);
 }

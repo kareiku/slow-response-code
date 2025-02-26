@@ -7,14 +7,14 @@ typedef unsigned char byte;
 
 int main(int argc, char **argv) {
     if (argc < 2) {
-        fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
+        fprintf(stderr, "[INFO] Usage: %s <filename>\n", argv[0]);
         return 1;
     }
 
     FILE* file = fopen(argv[1], "wb");
 
     if (!file) {
-        fprintf(stderr, "Error on file opening.\n");
+        fprintf(stderr, "[ERROR] Couldn't open file %s\n", argv[1]);
         return 2;
     }
 

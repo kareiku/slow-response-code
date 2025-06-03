@@ -1,0 +1,35 @@
+#include "../include/Bitmap.h"
+
+const vector<int8_t> Bitmap::HEADER = {
+    0x42, 0x4D, 0x46, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x36, 0x00, 0x00, 0x00, 0x28, 0x00,
+    0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x10, 0x00,
+    0x00, 0x00, 0x01, 0x00, 0x01, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x13, 0x0B,
+    0x00, 0x00, 0x13, 0x0B, 0x00, 0x00, 0x02, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+};
+
+Bitmap::Bitmap(string filename) : file(filename, ios::binary | ios::trunc) {
+    if (file.is_open()) {
+        this->append(HEADER);
+    } else {
+        throw std::ios_base::failure("Unable to open file: " + filename);
+    }
+}
+
+Bitmap::~Bitmap() {
+    if (file.is_open()) {
+        file.close();
+    }
+}
+
+void Bitmap::append(const vector<int8_t> &data) {
+    if (file.is_open()) {
+        if (not data.empty()) {
+            file.write(reinterpret_cast<const char *>(data.data()), data.size());
+        }
+    } else {
+        throw std::ios_base::failure("Attempted to write to closed file.");
+    }
+}

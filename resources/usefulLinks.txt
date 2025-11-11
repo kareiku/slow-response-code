@@ -1,1 +1,5 @@
 https://en.wikipedia.org/wiki/QR_code
+https://en.wikipedia.org/wiki/Reed%E2%80%93Solomon_error_correction#Constructions_(encoding)
+https://en.wikipedia.org/wiki/BCH_code
+https://en.wikipedia.org/wiki/File:QR_Character_Placement.svg
+https://en.wikipedia.org/wiki/File:QR_Code_Structure_Example_3.svg
